@@ -155,7 +155,7 @@
         GetGvgSeasonHistoryRankings,
         GetGvgSeasonGuildMemberHistory,
         KickFromGvGMatch,
-        GetChestLogs,
+        GetChestLogs = 152, // 0: Names[], 1: Item Id's[], 3: Item Amount[], 4: Timestamps[]
         GetAccessRightLogs,
         GetGuildAccountLogs,
         GetGuildAccountLogsLargeAmount,

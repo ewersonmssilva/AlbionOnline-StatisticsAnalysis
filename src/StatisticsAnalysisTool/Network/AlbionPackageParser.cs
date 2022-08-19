@@ -59,6 +59,7 @@ namespace StatisticsAnalysisTool.Network
         private readonly ChangeClusterResponseHandler _changeClusterResponseHandler;
         private readonly PartyMakeLeaderResponseHandler _partyMakeLeaderResponseHandler;
         private readonly JoinResponseHandler _joinResponseHandler;
+        private readonly GetChestLogsResponseHandler _getChestLogsResponseHandler;
         private readonly GetMailInfosResponseHandler _getMailInfosResponseHandler;
         private readonly ReadMailResponseHandler _readMailResponseHandler;
 
@@ -108,6 +109,7 @@ namespace StatisticsAnalysisTool.Network
             _changeClusterResponseHandler = new ChangeClusterResponseHandler(trackingController);
             _partyMakeLeaderResponseHandler = new PartyMakeLeaderResponseHandler(trackingController);
             _joinResponseHandler = new JoinResponseHandler(trackingController, mainWindowViewModel);
+            _getChestLogsResponseHandler = new GetChestLogsResponseHandler(trackingController);
             _getMailInfosResponseHandler = new GetMailInfosResponseHandler(trackingController);
             _readMailResponseHandler = new ReadMailResponseHandler(trackingController);
         }
@@ -285,6 +287,9 @@ namespace StatisticsAnalysisTool.Network
                         return;
                     case OperationCodes.Join:
                         await JoinResponseHandlerAsync(parameters);
+                        return;
+                    case OperationCodes.GetChestLogs:
+                        await GetChestLogsHandlerAsync(parameters);
                         return;
                     case OperationCodes.GetMailInfos:
                         await GetMailInfosResponseHandlerAsync(parameters);
@@ -572,6 +577,12 @@ namespace StatisticsAnalysisTool.Network
         {
             var value = new JoinResponse(parameters);
             await _joinResponseHandler.OnActionAsync(value);
+        }
+
+        private async Task GetChestLogsHandlerAsync(Dictionary<byte, object> parameters)
+        {
+            var value = new GetChestLogsResponse(parameters);
+            await _getChestLogsResponseHandler.OnActionAsync(value);
         }
 
         private async Task GetMailInfosResponseHandlerAsync(Dictionary<byte, object> parameters)

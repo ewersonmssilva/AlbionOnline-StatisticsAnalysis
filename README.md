@@ -1,26 +1,34 @@
-# AlbionOnline - Statistics Analysis
+AlbionOnline - Statistics Analysis
+===================
 [![Github All Releases](https://img.shields.io/github/v/release/Triky313/AlbionOnline-StatisticsAnalysis)](https://github.com/Triky313/AlbionOnline-StatisticsAnalysis/releases)
 [![Github All Releases](https://img.shields.io/github/downloads/Triky313/AlbionOnline-StatisticsAnalysis/total.svg)](https://github.com/Triky313/AlbionOnline-StatisticsAnalysis/releases) 
-![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/Triky313/AlbionOnline-StatisticsAnalysis/CodeQL/master)
-![Lines of code](https://img.shields.io/tokei/lines/github/Triky313/AlbionOnline-StatisticsAnalysis) 
+[![CodeFactor](https://www.codefactor.io/repository/github/triky313/albiononline-statisticsanalysis/badge/main)](https://www.codefactor.io/repository/github/triky313/albiononline-statisticsanalysis/overview/main)
+[![.NET Desktop](https://github.com/Triky313/AlbionOnline-StatisticsAnalysis/actions/workflows/dotnet-desktop.yml/badge.svg)](https://github.com/Triky313/AlbionOnline-StatisticsAnalysis/actions/workflows/dotnet-desktop.yml)
+![GitHub commits since latest release (by date)](https://img.shields.io/github/commits-since/Triky313/AlbionOnline-StatisticsAnalysis/latest?color=AF3B7F)
 [![GitHub issues](https://img.shields.io/github/issues/Triky313/AlbionOnline-StatisticsAnalysis)](https://github.com/Triky313/AlbionOnline-StatisticsAnalysis/issues)
-[![Discord](https://img.shields.io/badge/discord-join-blueviolet)](https://discord.gg/6dGTvuF5nJ) 
-[![Donate](https://img.shields.io/badge/paypal-donate-1e477a)](https://www.paypal.me/schultzaaron) 
+[![Discord](https://img.shields.io/discord/772406813438115891?color=blueviolet&label=discord)](https://discord.gg/Wv5RWehbrU) 
+[![Donate](https://img.shields.io/badge/paypal-donate-1e477a)](https://www.paypal.me/schultzaaron)
 
-A tool for easy reading of auction house data, Tracking of Dungeons and a Damage Meter for the game Albion Online
+A tool to easily read auction house data with a loot logger, damage meter, dungeon tracker, dungeon entry timer, crafting calculator, map history and player information
 
-![Image of this Application](https://github.com/Triky313/AlbionOnline-StatisticsAnalysis/blob/master/StatisticsAnalysisTool.png?raw=true)
+<p align="center" align='right'>
+  <img src="https://user-images.githubusercontent.com/14247773/147143464-c36d0cba-dddb-4b34-bd2e-11e3f65e3289.png" data-canonical-src="https://user-images.githubusercontent.com/14247773/147143464-c36d0cba-dddb-4b34-bd2e-11e3f65e3289.png" width="400" height="400" />
+</p>
 
-## DOWNLOAD AND START THE PROGRAM
-### Windows 10 Download
-# [StatisticsAnalysis-AlbionOnline-v4.0.1-x64.zip](https://github.com/Triky313/AlbionOnline-StatisticsAnalysis/releases/download/4.0.1/StatisticsAnalysis-AlbionOnline-v4.0.1-x64.zip)
-# [StatisticsAnalysis-AlbionOnline-v4.0.1-x86.zip](https://github.com/Triky313/AlbionOnline-StatisticsAnalysis/releases/download/4.0.1/StatisticsAnalysis-AlbionOnline-v4.0.1-x86.zip)
-Unzip the `.zip` file and start `StatisticsAnalysisTool.exe` with a double click.
+## Getting Started
 
-## Installation
- - General -> Minimal .Net Framework 5.0, you can download it [here](https://dotnet.microsoft.com/download).
- - For Tracking -> NPcap: [https://nmap.org/npcap](https://nmap.org/npcap/)
- 
+### Prerequisites & Installation
+- You need **Windows 10** or higher
+- Install **.NET 6.0 Desktop Runtime** (v6.0.5 or higher) [here](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-desktop-6.0.5-windows-x64-installer) (To start the tool)
+- Installing **Npcap** Free Edition (v1.6 or higher) [here](https://npcap.com/#download) (For Game tracking)
+
+**Download the Statistics Analysis Tool**
+- [**DOWNLOAD**](https://github.com/Triky313/AlbionOnline-StatisticsAnalysis/releases/download/5.11.0/StatisticsAnalysis-AlbionOnline-v5.11.0-x64.zip)
+Unzip the `.zip` file and start `StatisticsAnalysisTool.exe` with a double click. You may not be able to see the `.exe`. Don't worry, usually it's the file with the icon.
+
+![tool_dir](https://user-images.githubusercontent.com/14247773/170473306-4dcc629e-384e-41b2-ada8-657cabe1b472.png)
+
+
 ## Is This Allowed
 https://forum.albiononline.com/index.php/Thread/124819-Regarding-3rd-Party-Software-and-Network-Traffic-aka-do-not-cheat-Update-16-45-U/
 
@@ -37,6 +45,33 @@ If the item list is outdated, you can change it yourself. Just change the "ITEM 
 Another good source is https://github.com/broderickhyman/ao-bin-dumps
 
 Or you extract the files yourself from the game. More information can be found here: https://github.com/broderickhyman/ao-id-extractor
+
+
+## FAQ
+### Which operating system is supported?
+✅ Windows 10 and later
+
+❌ Windows XP, Vista, 7 and 8 are not supported!
+
+❌ Linux is currently not supported!
+
+### Can I use the tool with ExitLag or VPN?
+Unfortunately, **ExitLag is not supported**, but there are other VPN services that the tool works well with. There is no support from the developers for this. Validating it would be too time-consuming.
+
+### How fast does my internet need to be?
+An internet connection with at least 1M/bit (256KB/s) download rate.
+
+### The tool cannot download the ItemList.json or Item.json, what to do?
+If a button like the one in the screenshot appears and the automatic download of the files repeatedly does not work, the following can be done:
+
+![try-download-again-button](https://user-images.githubusercontent.com/14247773/170475039-3739e5cd-5d02-41bf-a77d-f58290de75a3.png)
+
+Download the file https://raw.githubusercontent.com/broderickhyman/ao-bin-dumps/master/formatted/items.json and rename it to ItemList.json.
+and
+Download this file https://raw.githubusercontent.com/broderickhyman/ao-bin-dumps/master/items.json 
+Then put both files in the tools folder.
+
+Then restart the tool and everything should work.
 
 
 ## INFORMATION
@@ -75,5 +110,7 @@ Copy the en-US file and change everything, then all APP-CODES should be availabl
 ## This website
 [triky313.github.io/AlbionOnline-StatisticsAnalysis](https://triky313.github.io/AlbionOnline-StatisticsAnalysis/)
 
-## DONATION & BACKERS
-[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/N4N81FD7A)
+## DONATIONS
+This project has existed since June 2019. Almost every week I put +10 hours into this project and I love it. That's why I often don't have the time to play Albion Online. So if you want to make me happy and support this project, just donate a few items or donate on Patreon.
+
+<img src="https://user-images.githubusercontent.com/14247773/166248069-3211a206-b475-4e83-860b-e5c51b9554bf.png" data-canonical-src="https://www.patreon.com/triky313" width="40" height="40" /> [Patreon - Triky313](https://www.patreon.com/triky313)

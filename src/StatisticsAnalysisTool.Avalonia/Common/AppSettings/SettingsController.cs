@@ -2,8 +2,9 @@
 using System.IO;
 using System.Text;
 using System.Text.Json;
+using StatisticsAnalysisTool.Common.AppSettings;
 
-namespace StatisticsAnalysisTool.Common.AppSettings
+namespace StatisticsAnalysisTool.Avalonia.Common.AppSettings
 {
     public static class SettingsController
     {
@@ -21,7 +22,7 @@ namespace StatisticsAnalysisTool.Common.AppSettings
                     CurrentSettings = JsonSerializer.Deserialize<SettingsObject>(settingsString) ?? new SettingsObject();
                     return true;
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     return false;
                 }
@@ -39,8 +40,9 @@ namespace StatisticsAnalysisTool.Common.AppSettings
                 var fileString = JsonSerializer.Serialize(CurrentSettings);
                 File.WriteAllText(localFilePath, fileString, Encoding.UTF8);
             }
-            catch (Exception e)
+            catch (Exception)
             {
+                // ignored
             }
         }
     }

@@ -9,6 +9,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Xml.Linq;
+using StatisticsAnalysisTool.Avalonia.Common.AppSettings;
 
 namespace StatisticsAnalysisTool.Avalonia.Common
 {

@@ -12,6 +12,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using log4net;
+using StatisticsAnalysisTool.Avalonia.Common.AppSettings;
 using StatisticsAnalysisTool.Avalonia.Enums;
 
 namespace StatisticsAnalysisTool.Avalonia.Common

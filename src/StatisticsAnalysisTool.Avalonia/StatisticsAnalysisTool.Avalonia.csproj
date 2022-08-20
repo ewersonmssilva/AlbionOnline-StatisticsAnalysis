@@ -11,9 +11,11 @@
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="Converters\" />
     <AvaloniaResource Include="Assets\**" />
-    <AvaloniaResource Remove="Assets\bg01.png" />
+    <AvaloniaXaml Remove="Converters\**" />
+    <Compile Remove="Converters\**" />
+    <EmbeddedResource Remove="Converters\**" />
+    <None Remove="Converters\**" />
     <None Remove=".gitignore" />
     <None Remove="Assets\bg01.png" />
     <None Remove="Assets\sat-icon.ico" />

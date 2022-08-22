@@ -1,6 +1,6 @@
 ﻿using log4net;
 using StatisticsAnalysisTool.Avalonia.Models;
-using StatisticsAnalysisTool.Common.AppSettings;
+using StatisticsAnalysisTool.Avalonia.Settings;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -9,7 +9,6 @@ using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Xml.Linq;
-using StatisticsAnalysisTool.Avalonia.Common.AppSettings;
 
 namespace StatisticsAnalysisTool.Avalonia.Common
 {
@@ -17,7 +16,7 @@ namespace StatisticsAnalysisTool.Avalonia.Common
     {
         private static readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod()?.DeclaringType);
 
-        private static readonly Dictionary<string, string> _translations = new();
+        private static readonly Dictionary<string, string> Translations = new();
         private static CultureInfo? _currentCultureInfo;
         public static List<FileInformation>? LanguageFiles { get; set; }
 
@@ -29,7 +28,7 @@ namespace StatisticsAnalysisTool.Avalonia.Common
             set
             {
                 _currentCultureInfo = value;
-                SettingsController.CurrentSettings.CurrentLanguageCultureName = value?.TextInfo.CultureName;
+                SettingsController.CurrentUserSettings.CurrentLanguageCultureName = value?.TextInfo.CultureName ?? ApplicationSettings.DefaultLanguageCultureName;
                 try
                 {
                     Thread.CurrentThread.CurrentUICulture = value!;
@@ -51,13 +50,13 @@ namespace StatisticsAnalysisTool.Avalonia.Common
             {
                 if (CurrentCultureInfo == null)
                 {
-                    if (!string.IsNullOrEmpty(SettingsController.CurrentSettings.CurrentLanguageCultureName))
+                    if (!string.IsNullOrEmpty(SettingsController.CurrentUserSettings.CurrentLanguageCultureName))
                     {
-                        CurrentCultureInfo = new CultureInfo(SettingsController.CurrentSettings.CurrentLanguageCultureName);
+                        CurrentCultureInfo = new CultureInfo(SettingsController.CurrentUserSettings.CurrentLanguageCultureName);
                     }
-                    else if (!string.IsNullOrEmpty(SettingsDefault.DefaultLanguageCultureName))
+                    else if (!string.IsNullOrEmpty(ApplicationSettings.DefaultLanguageCultureName))
                     {
-                        CurrentCultureInfo = new CultureInfo(SettingsDefault.DefaultLanguageCultureName);
+                        CurrentCultureInfo = new CultureInfo(ApplicationSettings.DefaultLanguageCultureName);
                     }
                     else
                     {
@@ -70,7 +69,7 @@ namespace StatisticsAnalysisTool.Avalonia.Common
                     return true;
                 }
 
-                CurrentCultureInfo = new CultureInfo(SettingsDefault.DefaultLanguageCultureName);
+                CurrentCultureInfo = new CultureInfo(ApplicationSettings.DefaultLanguageCultureName);
                 if (SetLanguage())
                 {
                     return true;
@@ -90,7 +89,7 @@ namespace StatisticsAnalysisTool.Avalonia.Common
         {
             try
             {
-                if (_translations.TryGetValue(key, out var value)) return !string.IsNullOrEmpty(value) ? value : key;
+                if (Translations.TryGetValue(key, out var value)) return !string.IsNullOrEmpty(value) ? value : key;
             }
             catch (ArgumentNullException)
             {
@@ -115,7 +114,7 @@ namespace StatisticsAnalysisTool.Avalonia.Common
                                  where string.Equals(file.FileName, CurrentCultureInfo?.TextInfo.CultureName, StringComparison.CurrentCultureIgnoreCase)
                                  select new FileInformation(file.FileName, file.FilePath)).FirstOrDefault();
 
-                return fileInfos != null && LoadTranslationsInDirectory(fileInfos.FilePath, _translations);
+                return fileInfos != null && LoadTranslationsInDirectory(fileInfos.FilePath, Translations);
             }
             catch (ArgumentNullException e)
             {
@@ -176,7 +175,7 @@ namespace StatisticsAnalysisTool.Avalonia.Common
                 return;
             }
 
-            var languageFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, SettingsDefault.LanguageDirectoryName);
+            var languageFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, ApplicationSettings.LanguageDirectoryName);
             if (!Directory.Exists(languageFilePath))
             {
                 return;

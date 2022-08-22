@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using StatisticsAnalysisTool.Avalonia.Enums;
+﻿using StatisticsAnalysisTool.Avalonia.Enumerations;
+using System.Collections.Generic;
 
 namespace StatisticsAnalysisTool.Avalonia.Common
 {

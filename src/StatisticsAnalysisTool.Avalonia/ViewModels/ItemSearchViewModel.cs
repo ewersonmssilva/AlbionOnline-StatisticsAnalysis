@@ -2,6 +2,7 @@ using ReactiveUI.Fody.Helpers;
 using StatisticsAnalysisTool.Avalonia.Common;
 using StatisticsAnalysisTool.Avalonia.Models.ItemSearch;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace StatisticsAnalysisTool.Avalonia.ViewModels
@@ -24,7 +25,14 @@ namespace StatisticsAnalysisTool.Avalonia.ViewModels
                 //return;
             }
 
-            Items = ItemController.ItemSearchObjects;
+            Items = new ObservableCollection<ItemSearchObject>(ItemController.Items.Select(x => new ItemSearchObject()
+            {
+                UniqueName = x.UniqueName,
+                Index = x.Index,
+                LocalizationDescriptionVariable = x.LocalizationDescriptionVariable,
+                LocalizationNameVariable = x.LocalizationNameVariable,
+                LocalizedNames = x.LocalizedNames
+            }));
         }
 
         #region Bindings

@@ -72,9 +72,9 @@ namespace StatisticsAnalysisTool.Avalonia.Common
             WriteLine(new ConsoleFragment(declaringType.ToString(), e.Message, ConsoleColorType.WarnColor));
         }
 
-        public static void WriteLineForError(Type declaringType, Exception e)
+        public static void WriteLineForError(Type? declaringType, Exception e)
         {
-            WriteLine(new ConsoleFragment(declaringType.ToString(), e.Message, ConsoleColorType.ErrorColor));
+            WriteLine(new ConsoleFragment(declaringType?.ToString() ?? string.Empty, e.Message, ConsoleColorType.ErrorColor));
             WriteLine(new ConsoleFragment(string.Empty, e.StackTrace ?? string.Empty, ConsoleColorType.ErrorColor));
         }
 

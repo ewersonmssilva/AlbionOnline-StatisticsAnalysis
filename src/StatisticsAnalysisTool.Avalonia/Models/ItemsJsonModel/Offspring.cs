@@ -2,10 +2,10 @@
 
 namespace StatisticsAnalysisTool.Avalonia.Models.ItemsJsonModel;
 
-public class Currency
+public class Offspring
 {
-    [JsonPropertyName("@uniquename")]
-    public string UniqueName { get; set; } = string.Empty;
+    [JsonPropertyName("@chance")]
+    public string Chance { get; set; } = string.Empty;
 
     [JsonPropertyName("@amount")]
     public string Amount { get; set; } = string.Empty;

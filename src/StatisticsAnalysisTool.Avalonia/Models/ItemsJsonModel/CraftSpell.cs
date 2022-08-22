@@ -2,11 +2,8 @@
 
 namespace StatisticsAnalysisTool.Avalonia.Models.ItemsJsonModel;
 
-public class Currency
+public class CraftSpell
 {
     [JsonPropertyName("@uniquename")]
     public string UniqueName { get; set; } = string.Empty;
-
-    [JsonPropertyName("@amount")]
-    public string Amount { get; set; } = string.Empty;
 }

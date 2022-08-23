@@ -17,7 +17,7 @@ namespace StatisticsAnalysisTool.Avalonia.Controls
             this.GetObservable(SelectedContentProperty).Subscribe(OnContentChanged);
         }
 
-        private void OnContentChanged(object obj)
+        private void OnContentChanged(object? obj)
         {
             if (!AnimateOnChange)
             {

@@ -15,7 +15,7 @@ public class CraftingRequirements
     public string CraftingFocus { get; set; } = string.Empty;
 
     [JsonPropertyName("craftresource")]
-    public List<CraftResource> CraftResource { get; set; } = new();
+    public List<CraftResource>? CraftResource { get; set; }
 
     [JsonPropertyName("@swaptransaction")]
     public string SwapTransaction { get; set; } = string.Empty;

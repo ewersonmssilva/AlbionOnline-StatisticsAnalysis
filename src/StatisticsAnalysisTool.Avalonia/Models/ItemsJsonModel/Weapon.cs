@@ -106,7 +106,7 @@ public class Weapon : ItemJsonObject
 
     [JsonConverter(typeof(CraftingRequirementsToCraftingRequirementsList))]
     [JsonPropertyName("craftingrequirements")]
-    public List<CraftingRequirements> CraftingRequirements { get; set; } = new();
+    public List<CraftingRequirements>? CraftingRequirements { get; set; }
 
     //public AudioInfo AudioInfo { get; set; }
     //public SocketPreset SocketPreset { get; set; }

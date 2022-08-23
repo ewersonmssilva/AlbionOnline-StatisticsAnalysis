@@ -2,6 +2,7 @@ using ReactiveUI.Fody.Helpers;
 using StatisticsAnalysisTool.Avalonia.Common;
 using StatisticsAnalysisTool.Avalonia.Controls;
 using System;
+using System.Threading.Tasks;
 
 namespace StatisticsAnalysisTool.Avalonia.ViewModels
 {
@@ -11,6 +12,8 @@ namespace StatisticsAnalysisTool.Avalonia.ViewModels
 
         public MainWindowViewModel()
         {
+            _ = InitUiAsync();
+
             if (LanguageController.InitializeLanguage())
             {
                 // TODO: Window close funktioniert hier nicht, dialog anzeigen!
@@ -22,12 +25,28 @@ namespace StatisticsAnalysisTool.Avalonia.ViewModels
             FooterViewModel = new FooterViewModel();
         }
 
+        #region Inits
+
+        private async Task InitUiAsync()
+        {
+#if DEBUG
+            DebugModeVisibility = true;
+#endif
+
+            await Task.CompletedTask;
+        }
+
+        #endregion
+
         public void CloseWindow()
         {
             Close?.Invoke();
         }
 
         #region Bindings
+
+        [Reactive] 
+        public bool DebugModeVisibility { get; set; }
 
         [Reactive]
         public ItemSearchViewModel ItemSearchViewModel { get; set; }

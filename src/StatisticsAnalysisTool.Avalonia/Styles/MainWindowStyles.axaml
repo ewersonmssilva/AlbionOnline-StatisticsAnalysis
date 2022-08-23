@@ -1,0 +1,52 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+	<Design.PreviewWith>
+        <Border>
+            <StackPanel Orientation="Horizontal" Height="38" VerticalAlignment="Top" Margin="35,0,90,0">
+                <Image Classes="ToolIcon" />
+                <Label Classes="MainTitleBar" Content="AlbionOnline - STATISTICS ANALYSIS TOOL" />
+			</StackPanel>
+        </Border>
+    </Design.PreviewWith>
+
+    <Style Selector="Image.ToolIcon" >
+        <Setter Property="Source" Value="/Assets/sat-icon.ico"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="Margin" Value="5,4,0,0"/>
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Width" Value="35"/>
+    </Style>
+
+    <Style Selector="DockPanel.MainTitleBar">
+        <Setter Property="ZIndex" Value="1" />
+        <Setter Property="Background" Value="{StaticResource SolidColorBrush.Transparent}" />
+        <Setter Property="Opacity" Value="1" />
+        <Setter Property="LastChildFill" Value="True" />
+        <Setter Property="Dock" Value="Top" />
+        <Setter Property="Height" Value="40" />
+        <Setter Property="VerticalAlignment" Value="Bottom" />
+        <Setter Property="Margin" Value="0,0,0,10" />
+    </Style>
+
+    <Style Selector="Label.MainTitleBar">
+        <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="Foreground" Value="{StaticResource SolidColorBrush.Text.1}"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+    </Style>
+
+    <Style Selector="Grid.MainBackgroundImage">
+        <Setter Property="ZIndex" Value="-1" />
+        <Setter Property="Width" Value="960" />
+        <Setter Property="Height" Value="398" />
+        <Setter Property="Opacity" Value="0.2" />
+        <Setter Property="Background">
+            <Setter.Value>
+                <ImageBrush Source="avares://StatisticsAnalysisTool.Avalonia/Assets/bg01.png" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</Styles>

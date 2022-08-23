@@ -5,9 +5,9 @@
         xmlns:viewModels="clr-namespace:StatisticsAnalysisTool.Avalonia.ViewModels"
         xmlns:views="clr-namespace:StatisticsAnalysisTool.Avalonia.Views"
         xmlns:controls="clr-namespace:StatisticsAnalysisTool.Avalonia.Controls"
-        mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="400"
-		MinHeight="400" MinWidth="600"
-		Height="500" Width="900"
+        mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="500"
+		MinHeight="550" MinWidth="1000"
+		Height="600" Width="1000"
         x:Class="StatisticsAnalysisTool.Avalonia.Views.MainWindow"
         Icon="/Assets/sat-icon.ico"
         Title="StatisticsAnalysisTool.Avalonia"
@@ -19,146 +19,201 @@
         <viewModels:MainWindowViewModel/>
     </Design.DataContext>
 
-    <Window.Styles>
-        <Style Selector="DockPanel.MainTitleBar">
-            <Setter Property="ZIndex" Value="1" />
-            <Setter Property="Background" Value="{StaticResource SolidColorBrush.Transparent}" />
-            <Setter Property="Opacity" Value="1" />
-            <Setter Property="LastChildFill" Value="True" />
-            <Setter Property="Dock" Value="Top" />
-            <Setter Property="Height" Value="40" />
-            <Setter Property="VerticalAlignment" Value="Bottom" />
-            <Setter Property="Margin" Value="0,0,0,10" />
-        </Style>
-
-        <Style Selector="Label.MainTitleBar">
-            <Setter Property="Content" Value="Statistic Analysis Tool" />
-            <Setter Property="FontWeight" Value="Bold" />
-            <Setter Property="FontSize" Value="24"/>
-            <Setter Property="Foreground" Value="{StaticResource SolidColorBrush.Foreground.1}"/>
-            <Setter Property="VerticalAlignment" Value="Bottom"/>
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-        </Style>
-
-        <Style Selector="Grid.MainBackgroundImage">
-            <Setter Property="ZIndex" Value="-1" />
-            <Setter Property="Width" Value="960" />
-            <Setter Property="Height" Value="398" />
-            <Setter Property="Opacity" Value="0.2" />
-            <Setter Property="Background">
-                <Setter.Value>
-                    <ImageBrush Source="avares://StatisticsAnalysisTool.Avalonia/Assets/bg01.png" />
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </Window.Styles>
+	<Window.Styles>
+		<StyleInclude Source="avares://StatisticsAnalysisTool.Avalonia/Styles/MainWindowStyles.axaml" />
+	</Window.Styles>
 
     <Panel>
         <ExperimentalAcrylicBorder IsHitTestVisible="False">
             <ExperimentalAcrylicBorder.Material>
-                <ExperimentalAcrylicMaterial BackgroundSource="Digger" TintColor="Black" TintOpacity="1" MaterialOpacity="0.90" />
+                <ExperimentalAcrylicMaterial BackgroundSource="Digger" TintColor="Black" TintOpacity="8" MaterialOpacity="0.85" />
             </ExperimentalAcrylicBorder.Material>
         </ExperimentalAcrylicBorder>
 
 		<DockPanel VerticalAlignment="Top" HorizontalAlignment="Right">
 			<Grid Classes="MainBackgroundImage" />
 		</DockPanel>
+        <Border BorderBrush="{StaticResource SolidColorBrush.Background.4}" BorderThickness="1" Margin="1">
+            <DockPanel LastChildFill="True" Margin="0,0,0,50">
+                <DockPanel Classes="MainTitleBar" ZIndex="-1" VerticalAlignment="Top" PointerPressed="Hotbar_OnPointerPressed">
+                    <Grid Background="{StaticResource SolidColorBrush.Background.5}" Opacity="0.5" />
 
-        <DockPanel LastChildFill="True" Margin="10,0,10,50">
+				    <StackPanel Orientation="Vertical" Margin="0">
+					    <Grid>
+                            <StackPanel Orientation="Horizontal"  Height="38" VerticalAlignment="Top" Margin="35,0,90,0">
+							    <Label Classes="MainTitleBar" Content="AlbionOnline - STATISTICS ANALYSIS TOOL" />
+                                <Label Classes="MainTitleBar" Content="- DEBUG -" Foreground="{StaticResource SolidColorBrush.Accent.Red.3}" IsVisible="{Binding DebugModeVisibility}" />
 
-            <!-- Title Bar -->
-			<DockPanel Classes="MainTitleBar" PointerPressed="TitleBar_OnPointerPressed">
-                <Label Classes="MainTitleBar" />
+                                <!--
+							    <Label Content="{Binding TrackingActivityBindings.TrackingActiveText, FallbackValue=TRACKING__IS__NOT__ACTIVE}" VerticalAlignment="Center">
+								    <Label.Style>
+									    <Style TargetType="{x:Type Label}">
+										    <Setter Property="Foreground" Value="{StaticResource SolidColorBrush.Text.6}"/>
+										    <Style.Triggers>
+											    <DataTrigger Binding="{Binding TrackingActivityBindings.TrackingActivityType}" Value="Partially">
+												    <Setter Property="Foreground" Value="{StaticResource SolidColorBrush.Accent.Yellow.1}"/>
+											    </DataTrigger>
+											    <DataTrigger Binding="{Binding TrackingActivityBindings.TrackingActivityType}" Value="On">
+												    <Setter Property="Foreground" Value="{StaticResource SolidColorBrush.Accent.Green.4}"/>
+											    </DataTrigger>
+										    </Style.Triggers>
+									    </Style>
+								    </Label.Style>
+							    </Label>
+							    <Grid Style="{StaticResource LoadingIconGridStyle}">
+								    <fa5:ImageAwesome Visibility="{Binding LoadIconVisibility}" Style="{StaticResource LoadingIconStyle}" />
+							    </Grid>-->
+						    </StackPanel>
+                            <Image Classes="ToolIcon" />
+					    </Grid>
+
+					    <Grid>
+                            <!--
+                            <Grid HorizontalAlignment="Left">
+							    <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
+								    <StackPanel Orientation="Horizontal" Visibility="{Binding UserTrackingBindings.UsernameInformationVisibility, FallbackValue=Hidden}">
+									    <Label Style="{StaticResource HeaderStyle.Tracking.Title}" Content="{Binding Translation.Username, FallbackValue=USERNAME}" ContentStringFormat="{}{0}: "/>
+									    <Label Style="{StaticResource HeaderStyle.Tracking.Content}" Content="{Binding UserTrackingBindings.Username, FallbackValue=USERNAME}"/>
+									    <Grid Visibility="{Binding TrackingActivityBindings.CharacterIsNotTrackedInfoVisibility, FallbackValue=Collapsed}" Height="20" Width="20" Margin="5,0,0,3" VerticalAlignment="Center"
+										      ToolTip="{Binding Translation.ThisCharacterIsNotTracked, FallbackValue=THIS_CHARACTER_IS_NOT_TRACKED}">
+										    <fa5:ImageAwesome Icon="Solid_ExclamationTriangle" Foreground="{StaticResource SolidColorBrush.Accent.Yellow.1}" />
+									    </Grid>
+									    <Label Content=" | "/>
+								    </StackPanel>
+								    <StackPanel Orientation="Horizontal" Visibility="{Binding UserTrackingBindings.GuildInformationVisibility, FallbackValue=Collapsed}">
+									    <Label Style="{StaticResource HeaderStyle.Tracking.Title}" Content="{Binding Translation.Guild, FallbackValue=GUILD}" ContentStringFormat="{}{0}: " />
+									    <Label Style="{StaticResource HeaderStyle.Tracking.Content}" Content="{Binding UserTrackingBindings.GuildName, FallbackValue=GUILD__NAME}" />
+									    <Label Content=" | "/>
+								    </StackPanel>
+								    <StackPanel Orientation="Horizontal" Visibility="{Binding UserTrackingBindings.AllianceInformationVisibility, FallbackValue=Collapsed}">
+									    <Label Style="{StaticResource HeaderStyle.Tracking.Title}" Content="{Binding Translation.Alliance, FallbackValue=ALLIANCE}" ContentStringFormat="{}{0}: " />
+									    <Label Style="{StaticResource HeaderStyle.Tracking.Content}" Content="{Binding UserTrackingBindings.AllianceName, FallbackValue=ALLIANCE__NAME}" />
+									    <Label Content=" | "/>
+								    </StackPanel>
+								    <StackPanel Orientation="Horizontal" Visibility="{Binding UserTrackingBindings.CurrentMapInformationVisibility, FallbackValue=Collapsed}">
+									    <Label Style="{StaticResource HeaderStyle.Tracking.Title}" Content="{Binding Translation.CurrentMap, FallbackValue=CURRENT__MAP}" ContentStringFormat="{}{0}: " />
+									    <Label Style="{StaticResource HeaderStyle.Tracking.Content}" Content="{Binding UserTrackingBindings.CurrentMapName, FallbackValue=CURRENT__MAP__NAME}" />
+									    <Label Style="{StaticResource HeaderStyle.Tracking.Content}" Visibility="{Binding UserTrackingBindings.IslandNameVisibility, FallbackValue=Collapsed}"
+										       Content="{Binding UserTrackingBindings.IslandName, FallbackValue=ISLAND_NAME}" ContentStringFormat="{}({0})" />
+								    </StackPanel>
+							    </StackPanel>
+						    </Grid>
+						    <Grid HorizontalAlignment="Right" Margin="0,0,10,0">
+							    <StackPanel Orientation="Horizontal">
+								    <Label Style="{StaticResource HeaderStyle.Tracking.Content}" Content="{Binding MainTrackerTimer, FallbackValue=00:00:00}"/>
+							    </StackPanel>
+						    </Grid>-->
+					    </Grid>
+				    </StackPanel>
+
+                    <!--<Grid Height="26" VerticalAlignment="Top" Margin="10,62,0,0" HorizontalAlignment="Left" Width="500">
+					    <StackPanel Orientation="Horizontal">
+						    <Label Content="{Binding PartyMemberNumber, FallbackValue=0}"/>
+						    <Grid Height="20" Width="20" Margin="0,0,5,0" VerticalAlignment="Center" PreviewMouseDown="CopyPartyToClipboard_PreviewMouseDown">
+							    <fa5:ImageAwesome Icon="Solid_Users" Foreground="{StaticResource SolidColorBrush.Text.1}"/>
+						    </Grid>
+						    <ItemsControl ItemsSource="{Binding PartyMemberCircles}" Style="{StaticResource PartyMember.ItemsControl}"/>
+					    </StackPanel>
+				    </Grid>
+
+				    <ProgressBar Margin="0,89,0,0" Height="1" Minimum="{Binding TaskProgressbarMinimum}" Maximum="{Binding TaskProgressbarMaximum}"
+							     Value="{Binding TaskProgressbarValue}" IsIndeterminate="{Binding IsTaskProgressbarIndeterminate}" />
+
+				    <Grid Height="20" Width="20" Margin="0,64,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" PreviewMouseDown="ToolTasksOpenClose_PreviewMouseDown">
+					    <fa5:ImageAwesome Icon="Solid_Tasks" Foreground="{StaticResource SolidColorBrush.Text.1}" />
+				    </Grid>-->
+			    </DockPanel>
+
+                <!-- Main Menu -->
+			    <controls:AnimateTabControl Classes="Sidebar">
+				    <TabItem>
+					    <HeaderedContentControl.HeaderTemplate>
+						    <DataTemplate>
+							    <StackPanel Classes="SidebarItem">
+								    <Label Content="Item Search" />
+							    </StackPanel>
+						    </DataTemplate>
+					    </HeaderedContentControl.HeaderTemplate>
+					    <views:ItemSearchView Margin="5" DataContext="{Binding ItemSearchViewModel}" />
+				    </TabItem>
+				    <TabItem>
+					    <HeaderedContentControl.HeaderTemplate>
+						    <DataTemplate>
+							    <StackPanel Classes="SidebarItem">
+								    <Label Content="Tracking" />
+							    </StackPanel>
+						    </DataTemplate>
+					    </HeaderedContentControl.HeaderTemplate>
+					    <views:TrackingGeneralView Margin="5" DataContext="{Binding TrackingGeneralViewModel}" />
+				    </TabItem>
+				    <TabItem>
+					    <HeaderedContentControl.HeaderTemplate>
+						    <DataTemplate>
+							    <StackPanel Classes="SidebarItem">
+								    <Label Content="Loot" />
+							    </StackPanel>
+						    </DataTemplate>
+					    </HeaderedContentControl.HeaderTemplate>
+					    <views:TrackingGeneralView Margin="5" DataContext="{Binding TrackingGeneralViewModel}" />
+				    </TabItem>
+				    <TabItem>
+					    <HeaderedContentControl.HeaderTemplate>
+						    <DataTemplate>
+							    <StackPanel Classes="SidebarItem">
+								    <Label Content="Dungeon" />
+							    </StackPanel>
+						    </DataTemplate>
+					    </HeaderedContentControl.HeaderTemplate>
+					    <views:TrackingGeneralView Margin="5" DataContext="{Binding TrackingGeneralViewModel}" />
+				    </TabItem>
+				    <TabItem>
+					    <HeaderedContentControl.HeaderTemplate>
+						    <DataTemplate>
+							    <StackPanel Classes="SidebarItem">
+								    <Label Content="Damage Meter" />
+							    </StackPanel>
+						    </DataTemplate>
+					    </HeaderedContentControl.HeaderTemplate>
+					    <views:TrackingGeneralView Margin="5" DataContext="{Binding TrackingGeneralViewModel}" />
+				    </TabItem>
+				    <TabItem>
+					    <HeaderedContentControl.HeaderTemplate>
+						    <DataTemplate>
+							    <StackPanel Classes="SidebarItem">
+								    <Label Content="Map History" />
+							    </StackPanel>
+						    </DataTemplate>
+					    </HeaderedContentControl.HeaderTemplate>
+					    <views:TrackingGeneralView Margin="5" DataContext="{Binding TrackingGeneralViewModel}" />
+				    </TabItem>
+				    <TabItem>
+					    <HeaderedContentControl.HeaderTemplate>
+						    <DataTemplate>
+							    <StackPanel Classes="SidebarItem">
+								    <Label Content="Player Information" />
+							    </StackPanel>
+						    </DataTemplate>
+					    </HeaderedContentControl.HeaderTemplate>
+					    <views:TrackingGeneralView Margin="5" DataContext="{Binding TrackingGeneralViewModel}" />
+				    </TabItem>
+				    <TabItem>
+					    <HeaderedContentControl.HeaderTemplate>
+						    <DataTemplate>
+							    <StackPanel Classes="SidebarItem">
+								    <Label Content="Settings" />
+							    </StackPanel>
+						    </DataTemplate>
+					    </HeaderedContentControl.HeaderTemplate>
+					    <views:TrackingGeneralView Margin="5" DataContext="{Binding TrackingGeneralViewModel}" />
+				    </TabItem>
+			    </controls:AnimateTabControl>
             </DockPanel>
+        </Border>
 
-            <!-- Main Menu -->
-			<controls:AnimateTabControl Classes="Sidebar">
-				<TabItem>
-					<HeaderedContentControl.HeaderTemplate>
-						<DataTemplate>
-							<StackPanel Classes="SidebarItem">
-								<Label Content="Item Search" />
-							</StackPanel>
-						</DataTemplate>
-					</HeaderedContentControl.HeaderTemplate>
-					<views:ItemSearchView Margin="5" DataContext="{Binding ItemSearchViewModel}" />
-				</TabItem>
-				<TabItem>
-					<HeaderedContentControl.HeaderTemplate>
-						<DataTemplate>
-							<StackPanel Classes="SidebarItem">
-								<Label Content="Tracking" />
-							</StackPanel>
-						</DataTemplate>
-					</HeaderedContentControl.HeaderTemplate>
-					<views:TrackingGeneralView Margin="5" DataContext="{Binding TrackingGeneralViewModel}" />
-				</TabItem>
-				<TabItem>
-					<HeaderedContentControl.HeaderTemplate>
-						<DataTemplate>
-							<StackPanel Classes="SidebarItem">
-								<Label Content="Loot" />
-							</StackPanel>
-						</DataTemplate>
-					</HeaderedContentControl.HeaderTemplate>
-					<views:TrackingGeneralView Margin="5" DataContext="{Binding TrackingGeneralViewModel}" />
-				</TabItem>
-				<TabItem>
-					<HeaderedContentControl.HeaderTemplate>
-						<DataTemplate>
-							<StackPanel Classes="SidebarItem">
-								<Label Content="Dungeon" />
-							</StackPanel>
-						</DataTemplate>
-					</HeaderedContentControl.HeaderTemplate>
-					<views:TrackingGeneralView Margin="5" DataContext="{Binding TrackingGeneralViewModel}" />
-				</TabItem>
-				<TabItem>
-					<HeaderedContentControl.HeaderTemplate>
-						<DataTemplate>
-							<StackPanel Classes="SidebarItem">
-								<Label Content="Damage Meter" />
-							</StackPanel>
-						</DataTemplate>
-					</HeaderedContentControl.HeaderTemplate>
-					<views:TrackingGeneralView Margin="5" DataContext="{Binding TrackingGeneralViewModel}" />
-				</TabItem>
-				<TabItem>
-					<HeaderedContentControl.HeaderTemplate>
-						<DataTemplate>
-							<StackPanel Classes="SidebarItem">
-								<Label Content="Map History" />
-							</StackPanel>
-						</DataTemplate>
-					</HeaderedContentControl.HeaderTemplate>
-					<views:TrackingGeneralView Margin="5" DataContext="{Binding TrackingGeneralViewModel}" />
-				</TabItem>
-				<TabItem>
-					<HeaderedContentControl.HeaderTemplate>
-						<DataTemplate>
-							<StackPanel Classes="SidebarItem">
-								<Label Content="Player Information" />
-							</StackPanel>
-						</DataTemplate>
-					</HeaderedContentControl.HeaderTemplate>
-					<views:TrackingGeneralView Margin="5" DataContext="{Binding TrackingGeneralViewModel}" />
-				</TabItem>
-				<TabItem>
-					<HeaderedContentControl.HeaderTemplate>
-						<DataTemplate>
-							<StackPanel Classes="SidebarItem">
-								<Label Content="Settings" />
-							</StackPanel>
-						</DataTemplate>
-					</HeaderedContentControl.HeaderTemplate>
-					<views:TrackingGeneralView Margin="5" DataContext="{Binding TrackingGeneralViewModel}" />
-				</TabItem>
-			</controls:AnimateTabControl>
-        </DockPanel>
-
-		<!-- Footer -->
+        <!-- Footer -->
 		<DockPanel VerticalAlignment="Bottom">
             <ContentControl Content="{Binding FooterViewModel}"/>
 		</DockPanel>
+        
     </Panel>
 </Window>

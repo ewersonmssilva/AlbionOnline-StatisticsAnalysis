@@ -9,7 +9,7 @@
 					<HeaderedContentControl.HeaderTemplate>
 						<DataTemplate>
 							<StackPanel Classes="SidebarItem">
-								<PathIcon Data="{StaticResource Icon.Discord}" />
+								<PathIcon Data="{DynamicResource Icon.Discord}" />
 								<Label Content="Item Search" />
 							</StackPanel>
 						</DataTemplate>
@@ -20,7 +20,7 @@
 					<HeaderedContentControl.HeaderTemplate>
 						<DataTemplate>
 							<StackPanel Classes="SidebarItem">
-								<PathIcon Data="{StaticResource Icon.Discord}" />
+								<PathIcon Data="{DynamicResource Icon.Discord}" />
 								<Label Content="Tracking" />
 							</StackPanel>
 						</DataTemplate>
@@ -31,7 +31,7 @@
 					<HeaderedContentControl.HeaderTemplate>
 						<DataTemplate>
 							<StackPanel Classes="SidebarItem">
-								<PathIcon Data="{StaticResource Icon.Discord}" />
+								<PathIcon Data="{DynamicResource Icon.Discord}" />
 								<Label Content="Loot" />
 							</StackPanel>
 						</DataTemplate>
@@ -42,7 +42,7 @@
 					<HeaderedContentControl.HeaderTemplate>
 						<DataTemplate>
 							<StackPanel Classes="SidebarItem">
-								<PathIcon Data="{StaticResource Icon.Discord}" />
+								<PathIcon Data="{DynamicResource Icon.Discord}" />
 								<Label Content="Dungeon" />
 							</StackPanel>
 						</DataTemplate>
@@ -53,7 +53,7 @@
 					<HeaderedContentControl.HeaderTemplate>
 						<DataTemplate>
 							<StackPanel Classes="SidebarItem">
-								<PathIcon Data="{StaticResource Icon.Discord}" />
+								<PathIcon Data="{DynamicResource Icon.Discord}" />
 								<Label Content="Damage Meter" />
 							</StackPanel>
 						</DataTemplate>
@@ -64,7 +64,7 @@
 					<HeaderedContentControl.HeaderTemplate>
 						<DataTemplate>
 							<StackPanel Classes="SidebarItem">
-								<PathIcon Data="{StaticResource Icon.Discord}" />
+								<PathIcon Data="{DynamicResource Icon.Discord}" />
 								<Label Content="Map History" />
 							</StackPanel>
 						</DataTemplate>
@@ -75,7 +75,7 @@
 					<HeaderedContentControl.HeaderTemplate>
 						<DataTemplate>
 							<StackPanel Classes="SidebarItem">
-								<PathIcon Data="{StaticResource Icon.Discord}" />
+								<PathIcon Data="{DynamicResource Icon.Discord}" />
 								<Label Content="Player Information" />
 							</StackPanel>
 						</DataTemplate>
@@ -86,7 +86,7 @@
 					<HeaderedContentControl.HeaderTemplate>
 						<DataTemplate>
 							<StackPanel Classes="SidebarItem">
-								<PathIcon  Data="{StaticResource Icon.Discord}" />
+								<PathIcon  Data="{DynamicResource Icon.Discord}" />
 								<Label Content="Settings" />
 							</StackPanel>
 						</DataTemplate>
@@ -141,7 +141,7 @@
 
 	<Style Selector="TabControl.Sidebar > TabItem">
         <Setter Property="FontSize" Value="15"/>
-        <Setter Property="Foreground" Value="{StaticResource SolidColorBrush.Foreground.6}"/>
+        <Setter Property="Foreground" Value="{DynamicResource SolidColorBrush.Text.6}"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="Margin" Value="0"/>
         <Setter Property="Padding" Value="5,0,0,0"/>
@@ -151,11 +151,11 @@
         <Setter Property="(ScrollViewer.VerticalScrollBarVisibility)" Value="Auto"/>
 	</Style>
 	<Style Selector="TabControl.Sidebar > TabItem:selected /template/ Border#PART_SelectedPipe">
-        <Setter Property="Background" Value="{StaticResource SolidColorBrush.Blue.7}" />
+        <Setter Property="Background" Value="{StaticResource SolidColorBrush.Accent.Blue.4}" />
         <Setter Property="Height" Value="22" />
 	</Style>
 	<Style Selector="TabControl.Sidebar > TabItem:selected">
-        <Setter Property="Foreground" Value="{StaticResource SolidColorBrush.Foreground.3}"/>
+        <Setter Property="Foreground" Value="{StaticResource SolidColorBrush.Text.3}"/>
 	</Style>
 
     <Style Selector="TabControl.Sidebar:normal /template/ ContentPresenter">
@@ -174,7 +174,7 @@
     </Style>
 
     <Style Selector="PathIcon.Sidebar">
-        <Setter Property="Foreground" Value="{StaticResource SolidColorBrush.Foreground.3}"/>
+        <Setter Property="Foreground" Value="{StaticResource SolidColorBrush.Text.3}"/>
         <Setter Property="Margin" Value="0,0,5,0" />
     </Style>
 

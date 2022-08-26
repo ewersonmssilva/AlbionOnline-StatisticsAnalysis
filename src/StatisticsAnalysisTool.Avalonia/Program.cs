@@ -1,6 +1,8 @@
 using Avalonia;
 using Avalonia.ReactiveUI;
 using System;
+using Projektanker.Icons.Avalonia;
+using Projektanker.Icons.Avalonia.FontAwesome;
 
 namespace StatisticsAnalysisTool.Avalonia
 {
@@ -13,6 +15,11 @@ namespace StatisticsAnalysisTool.Avalonia
         public static void Main(string[] args) => BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
 
         // Avalonia configuration, don't remove; also used by visual designer.
-        public static AppBuilder BuildAvaloniaApp() => AppBuilder.Configure<App>().UsePlatformDetect().LogToTrace().UseReactiveUI();
+        public static AppBuilder BuildAvaloniaApp() => AppBuilder.Configure<App>()
+            .UsePlatformDetect()
+            .LogToTrace()
+            .UseReactiveUI()
+            .WithIcons(container => container
+            .Register<FontAwesomeIconProvider>());
     }
 }

@@ -43,7 +43,7 @@
                             <StackPanel Orientation="Horizontal"  Height="38" VerticalAlignment="Top" Margin="35,0,90,0">
 							    <Label Classes="MainTitleBar" Content="AlbionOnline - STATISTICS ANALYSIS TOOL" />
                                 <Label Classes="MainTitleBar" Content="- DEBUG -" Foreground="{StaticResource SolidColorBrush.Accent.Red.3}" IsVisible="{Binding DebugModeVisibility}" />
-
+                                
                                 <!--
 							    <Label Content="{Binding TrackingActivityBindings.TrackingActiveText, FallbackValue=TRACKING__IS__NOT__ACTIVE}" VerticalAlignment="Center">
 								    <Label.Style>

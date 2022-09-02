@@ -67,9 +67,9 @@ namespace StatisticsAnalysisTool.Avalonia.Common
             WriteLine(new ConsoleFragment(name, parameters, ConsoleColorType.EventColor));
         }
 
-        public static void WriteLineForWarning(Type declaringType, Exception e)
+        public static void WriteLineForWarning(Type? declaringType, Exception e)
         {
-            WriteLine(new ConsoleFragment(declaringType.ToString(), e.Message, ConsoleColorType.WarnColor));
+            WriteLine(new ConsoleFragment(declaringType?.ToString() ?? string.Empty, e.Message, ConsoleColorType.WarnColor));
         }
 
         public static void WriteLineForError(Type? declaringType, Exception e)
@@ -78,9 +78,9 @@ namespace StatisticsAnalysisTool.Avalonia.Common
             WriteLine(new ConsoleFragment(string.Empty, e.StackTrace ?? string.Empty, ConsoleColorType.ErrorColor));
         }
 
-        public static void WriteLineForMessage(Type declaringType, string message, ConsoleColorType consoleColorType = ConsoleColorType.Default)
+        public static void WriteLineForMessage(Type? declaringType, string message, ConsoleColorType consoleColorType = ConsoleColorType.Default)
         {
-            WriteLine(new ConsoleFragment(declaringType.ToString(), message, consoleColorType));
+            WriteLine(new ConsoleFragment(declaringType?.ToString() ?? string.Empty, message, consoleColorType));
         }
 
         public static void WriteLineForMessage(string name, Dictionary<byte, object> parameters, ConsoleColorType consoleColorType = ConsoleColorType.Default)

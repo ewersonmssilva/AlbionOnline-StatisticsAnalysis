@@ -5,6 +5,8 @@
         xmlns:viewModels="clr-namespace:StatisticsAnalysisTool.Avalonia.ViewModels"
         xmlns:views="clr-namespace:StatisticsAnalysisTool.Avalonia.Views"
         xmlns:controls="clr-namespace:StatisticsAnalysisTool.Avalonia.Controls"
+        xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
+        xmlns:ia="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Avalonia.Xaml.Interactions"
         mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="500"
 		MinHeight="550" MinWidth="1000"
 		Height="600" Width="1000"
@@ -44,22 +46,25 @@
 							    <Label Classes="MainTitleBar" Content="AlbionOnline - STATISTICS ANALYSIS TOOL" />
                                 <Label Classes="MainTitleBar" Content="- DEBUG -" Foreground="{StaticResource SolidColorBrush.Accent.Red.3}" IsVisible="{Binding DebugModeVisibility}" />
                                 
+							    <Label Content="{Binding TrackingActivityBindings.TrackingActiveText, FallbackValue=TRACKING__IS__NOT__ACTIVE}">
+									<Label.Styles>
+                                        <Style Selector="Label">
+                                            <Setter Property="Margin" Value="0,0,0,1"/>
+                                            <Setter Property="FontSize" Value="14"/>
+                                            <Setter Property="VerticalAlignment" Value="Center"/>
+                                            <Setter Property="Foreground" Value="{StaticResource SolidColorBrush.Text.6}"/>
+											<i:Interaction.Behaviors>
+												<ia:DataTriggerBehavior Binding="{Binding TrackingActivityBindings.TrackingActivityType}" ComparisonCondition="Equal" Value="Partially">
+													<ia:ChangePropertyAction PropertyName="Foreground" Value="{StaticResource SolidColorBrush.Accent.Yellow.1}" />
+												</ia:DataTriggerBehavior>
+												<ia:DataTriggerBehavior Binding="{Binding TrackingActivityBindings.TrackingActivityType}" ComparisonCondition="Equal" Value="On">
+													<ia:ChangePropertyAction PropertyName="Foreground" Value="{StaticResource SolidColorBrush.Accent.Green.4}" />
+												</ia:DataTriggerBehavior>
+											</i:Interaction.Behaviors>
+                                        </Style>
+                                    </Label.Styles>
+                                </Label>
                                 <!--
-							    <Label Content="{Binding TrackingActivityBindings.TrackingActiveText, FallbackValue=TRACKING__IS__NOT__ACTIVE}" VerticalAlignment="Center">
-								    <Label.Style>
-									    <Style TargetType="{x:Type Label}">
-										    <Setter Property="Foreground" Value="{StaticResource SolidColorBrush.Text.6}"/>
-										    <Style.Triggers>
-											    <DataTrigger Binding="{Binding TrackingActivityBindings.TrackingActivityType}" Value="Partially">
-												    <Setter Property="Foreground" Value="{StaticResource SolidColorBrush.Accent.Yellow.1}"/>
-											    </DataTrigger>
-											    <DataTrigger Binding="{Binding TrackingActivityBindings.TrackingActivityType}" Value="On">
-												    <Setter Property="Foreground" Value="{StaticResource SolidColorBrush.Accent.Green.4}"/>
-											    </DataTrigger>
-										    </Style.Triggers>
-									    </Style>
-								    </Label.Style>
-							    </Label>
 							    <Grid Style="{StaticResource LoadingIconGridStyle}">
 								    <fa5:ImageAwesome Visibility="{Binding LoadIconVisibility}" Style="{StaticResource LoadingIconStyle}" />
 							    </Grid>-->

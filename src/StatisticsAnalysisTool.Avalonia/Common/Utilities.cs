@@ -5,7 +5,6 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Interop;
-using StatisticsAnalysisTool.Avalonia.Views;
 using Window = Avalonia.Controls.Window;
 
 namespace StatisticsAnalysisTool.Avalonia.Common

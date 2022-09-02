@@ -33,7 +33,7 @@ namespace StatisticsAnalysisTool.Avalonia.ViewModels
             }
             
             InitData();
-            Initialization = InitTrackingAsync();
+            //Initialization = InitTrackingAsync();
         }
 
         #region Inits
@@ -42,8 +42,9 @@ namespace StatisticsAnalysisTool.Avalonia.ViewModels
         
         private static void InitData()
         {
-            WorldData.GetDataListFromJson();
-            DungeonObjectData.GetDataListFromJson();
+            // TODO: Close when file can not load
+            var isWorldDataOkay = WorldData.GetDataListFromJson();
+            var isDungeonObjectDataOkay = DungeonObjectData.GetDataListFromJson();
         }
 
         private async Task InitTrackingAsync()

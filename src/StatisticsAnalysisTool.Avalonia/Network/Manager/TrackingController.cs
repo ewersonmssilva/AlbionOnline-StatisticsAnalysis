@@ -14,7 +14,7 @@ namespace StatisticsAnalysisTool.Avalonia.Network.Manager
         private const int MaxNotifications = 4000;
 
         private static readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod()?.DeclaringType);
-        private readonly MainWindow _mainWindow;
+        private readonly MainWindow? _mainWindow;
         private readonly MainWindowViewModel _mainWindowViewModel;
         public ClusterController ClusterController;
         public LiveStatsTracker LiveStatsTracker;
@@ -28,7 +28,7 @@ namespace StatisticsAnalysisTool.Avalonia.Network.Manager
         //public VaultController VaultController;
         private readonly List<NotificationType> _notificationTypesFilters = new();
 
-        public TrackingController(MainWindowViewModel mainWindowViewModel, MainWindow mainWindow)
+        public TrackingController(MainWindowViewModel mainWindowViewModel, MainWindow? mainWindow)
         {
             _mainWindowViewModel = mainWindowViewModel;
             _mainWindow = mainWindow;

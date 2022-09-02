@@ -212,7 +212,7 @@ namespace StatisticsAnalysisTool.Avalonia.Network.Manager
 
             _mainWindowViewModel.DashboardBindings.TotalSilverCostForReSpecInSession = _totalGainedReSpecInSessionWithReSpecBoost * SilverCostPerFameCredit;
 
-            var factionPointStat = _mainWindowViewModel.FactionPointStats.FirstOrDefault();
+            var factionPointStat = _mainWindowViewModel.FactionPointStats?.FirstOrDefault();
             if (factionPointStat != null)
             {
                 factionPointStat.CityFaction = _currentCityFaction;

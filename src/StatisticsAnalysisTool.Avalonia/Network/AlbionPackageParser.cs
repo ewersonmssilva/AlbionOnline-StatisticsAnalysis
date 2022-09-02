@@ -18,7 +18,7 @@ public class AlbionPackageParser : PhotonParser
 
     private static readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod()?.DeclaringType);
 
-    public AlbionPackageParser(TrackingController trackingController, MainWindowViewModel mainWindowViewModel)
+    public AlbionPackageParser(TrackingController? trackingController, MainWindowViewModel mainWindowViewModel)
     {
         _joinResponseHandler = new JoinResponseHandler(trackingController, mainWindowViewModel);
     }
@@ -27,12 +27,12 @@ public class AlbionPackageParser : PhotonParser
 
     protected override void OnEvent(byte code, Dictionary<byte, object> parameters)
     {
-        throw new NotImplementedException();
+        return;
     }
 
     protected override void OnRequest(byte operationCode, Dictionary<byte, object> parameters)
     {
-        throw new NotImplementedException();
+        return;
     }
 
     protected override void OnResponse(byte operationCode, short returnCode, string debugMessage, Dictionary<byte, object> parameters)
@@ -49,7 +49,7 @@ public class AlbionPackageParser : PhotonParser
             switch (opCode)
             {
                 case OperationCodes.Join:
-                    await JoinResponseHandlerAsync(parameters);
+                    //await JoinResponseHandlerAsync(parameters);
                     return;
             }
         });

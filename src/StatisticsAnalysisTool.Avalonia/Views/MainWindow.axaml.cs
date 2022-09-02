@@ -2,10 +2,9 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Markup.Xaml;
-using StatisticsAnalysisTool.Avalonia.Common;
 using StatisticsAnalysisTool.Avalonia.Controls;
 using System;
-using Application = System.Windows.Application;
+using StatisticsAnalysisTool.Avalonia.Common;
 
 // ReSharper disable UnusedParameter.Local
 // ReSharper disable UnusedMember.Local
@@ -19,6 +18,7 @@ namespace StatisticsAnalysisTool.Avalonia.Views
         public MainWindow()
         {
             InitializeComponent();
+            WindowsManager.AllWindows.Add(this);
 #if DEBUG
             this.AttachDevTools();
 #endif
@@ -66,7 +66,7 @@ namespace StatisticsAnalysisTool.Avalonia.Views
                     break;
             }
         }
-        
+
         private void SwitchState()
         {
             WindowState = WindowState switch

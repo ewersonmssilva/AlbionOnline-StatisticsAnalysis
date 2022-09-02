@@ -13,9 +13,9 @@ namespace StatisticsAnalysisTool.Avalonia.Network.Handler
     public class JoinResponseHandler
     {
         private readonly MainWindowViewModel _mainWindowViewModel;
-        private readonly TrackingController _trackingController;
+        private readonly TrackingController? _trackingController;
 
-        public JoinResponseHandler(TrackingController trackingController, MainWindowViewModel mainWindowViewModel)
+        public JoinResponseHandler(TrackingController? trackingController, MainWindowViewModel mainWindowViewModel)
         {
             _trackingController = trackingController;
             _mainWindowViewModel = mainWindowViewModel;
@@ -25,7 +25,7 @@ namespace StatisticsAnalysisTool.Avalonia.Network.Handler
         {
             await SetLocalUserData(value);
 
-            _trackingController.ClusterController.SetJoinClusterInformation(value.MapIndex, value.MainMapIndex);
+            _trackingController?.ClusterController.SetJoinClusterInformation(value.MapIndex, value.MainMapIndex);
 
             _mainWindowViewModel.UserTrackingBindings.Username = value.Username;
             _mainWindowViewModel.UserTrackingBindings.GuildName = value.GuildName;
@@ -38,7 +38,7 @@ namespace StatisticsAnalysisTool.Avalonia.Network.Handler
             await AddEntityAsync(value.UserObjectId, value.UserGuid, value.InteractGuid, 
                 value.Username, value.GuildName, value.AllianceName, GameObjectType.Player, GameObjectSubType.LocalPlayer);
 
-            _trackingController.DungeonController.AddDungeonAsync(value.MapType, value.MapGuid).ConfigureAwait(false);
+            await _trackingController?.DungeonController.AddDungeonAsync(value.MapType, value.MapGuid)!;
 
             ResetFameCounterByMapChangeIfActive();
             SetTrackingActivityText();
@@ -46,7 +46,7 @@ namespace StatisticsAnalysisTool.Avalonia.Network.Handler
 
         private async Task SetLocalUserData(JoinResponse value)
         {
-            await _trackingController.EntityController.LocalUserData.SetValuesAsync(new LocalUserData
+            await _trackingController?.EntityController.LocalUserData?.SetValuesAsync(new LocalUserData
             {
                 UserObjectId = value.UserObjectId,
                 Guid = value.UserGuid,
@@ -62,10 +62,10 @@ namespace StatisticsAnalysisTool.Avalonia.Network.Handler
                 PlayTimeInSeconds = value.PlayTimeInSeconds,
                 AllianceName = value.AllianceName,
                 IsReSpecActive = value.IsReSpecActive
-            });
+            })!;
         }
 
-        private async Task AddEntityAsync(long? userObjectId, Guid? guid, Guid? interactGuid, string name, string guild, string alliance, GameObjectType gameObjectType, GameObjectSubType gameObjectSubType)
+        private async Task AddEntityAsync(long? userObjectId, Guid? guid, Guid? interactGuid, string? name, string? guild, string? alliance, GameObjectType gameObjectType, GameObjectSubType gameObjectSubType)
         {
             if (guid == null || interactGuid == null || userObjectId == null)
             {
@@ -89,11 +89,11 @@ namespace StatisticsAnalysisTool.Avalonia.Network.Handler
         {
             if (_mainWindowViewModel.IsTrackingResetByMapChangeActive)
             {
-                _mainWindowViewModel?.TrackingController?.LiveStatsTracker?.Reset();
+                _mainWindowViewModel.TrackingController?.LiveStatsTracker.Reset();
             }
         }
 
-        private void SetCharacterTrackedVisibility(string name)
+        private void SetCharacterTrackedVisibility(string? name)
         {
             if (string.IsNullOrEmpty(SettingsController.CurrentUserSettings.MainTrackingCharacterName) || name == SettingsController.CurrentUserSettings.MainTrackingCharacterName)
             {

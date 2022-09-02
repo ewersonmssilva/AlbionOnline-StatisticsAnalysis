@@ -80,7 +80,7 @@ namespace StatisticsAnalysisTool.Avalonia.Models
             MapTypeString = GetMapTypeName(MapType);
         }
 
-        public void SetJoinClusterInfo(string index, string mainClusterIndex)
+        public void SetJoinClusterInfo(string? index, string? mainClusterIndex)
         {
             MainClusterIndex ??= mainClusterIndex;
             WorldJsonType = WorldData.GetWorldJsonTypeByIndex(index) ?? WorldData.GetWorldJsonTypeByIndex(mainClusterIndex) ?? string.Empty;

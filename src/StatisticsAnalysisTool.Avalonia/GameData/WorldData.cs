@@ -198,7 +198,7 @@ namespace StatisticsAnalysisTool.Avalonia.GameData
             return MapData?.FirstOrDefault(x => x.Index == index)?.Type;
         }
 
-        public static string? GetFileByIndex(string index)
+        public static string? GetFileByIndex(string? index)
         {
             return MapData?.FirstOrDefault(x => x.Index == index)?.File;
         }

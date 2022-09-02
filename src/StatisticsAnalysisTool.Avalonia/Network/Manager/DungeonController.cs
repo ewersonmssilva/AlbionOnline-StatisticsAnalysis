@@ -334,7 +334,7 @@ namespace StatisticsAnalysisTool.Avalonia.Network.Manager
             }
         }
 
-        private void RemoveDungeonsAfterCertainNumber(List<DungeonObject> dungeons, int dungeonLimit)
+        private void RemoveDungeonsAfterCertainNumber(List<DungeonObject>? dungeons, int dungeonLimit)
         {
             if (_trackingController.IsMainWindowNull())
             {
@@ -355,8 +355,13 @@ namespace StatisticsAnalysisTool.Avalonia.Network.Manager
                     var dateTime = GetLowestDate(dungeons);
                     if (dateTime != null)
                     {
-                        var removableItem = dungeons.FirstOrDefault(x => x.EnterDungeonFirstTime == dateTime);
-                        dungeons.Remove(removableItem);
+                        var removableItem = dungeons?.FirstOrDefault(x => x.EnterDungeonFirstTime == dateTime);
+                        if (removableItem == null)
+                        {
+                            continue;
+                        }
+
+                        dungeons?.Remove(removableItem);
                     }
                 }
             }
@@ -706,7 +711,7 @@ namespace StatisticsAnalysisTool.Avalonia.Network.Manager
             }
         }
 
-        public static DateTime? GetLowestDate(List<DungeonObject> items)
+        public static DateTime? GetLowestDate(List<DungeonObject>? items)
         {
             if (items?.Count <= 0)
             {

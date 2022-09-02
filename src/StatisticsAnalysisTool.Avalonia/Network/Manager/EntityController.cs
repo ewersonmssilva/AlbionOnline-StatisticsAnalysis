@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
-using System.Windows;
-using Avalonia.Threading;
+﻿using Avalonia.Threading;
 using log4net;
 using StatisticsAnalysisTool.Avalonia.Common;
 using StatisticsAnalysisTool.Avalonia.Enumerations;
@@ -14,6 +6,13 @@ using StatisticsAnalysisTool.Avalonia.Models;
 using StatisticsAnalysisTool.Avalonia.Models.NetworkModel;
 using StatisticsAnalysisTool.Avalonia.Network.Time;
 using StatisticsAnalysisTool.Avalonia.ViewModels;
+using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Reflection;
+using System.Threading.Tasks;
 
 namespace StatisticsAnalysisTool.Avalonia.Network.Manager;
 
@@ -39,10 +38,10 @@ public class EntityController
 
     #region Entities
 
-    public event Action<GameObject> OnAddEntity;
+    public event Action<GameObject>? OnAddEntity;
 
-    public void AddEntity(long objectId, Guid userGuid, Guid? interactGuid, string name, string guild, string alliance,
-        CharacterEquipment characterEquipment, GameObjectType objectType, GameObjectSubType objectSubType)
+    public void AddEntity(long objectId, Guid userGuid, Guid? interactGuid, string? name, string? guild, string? alliance,
+        CharacterEquipment? characterEquipment, GameObjectType objectType, GameObjectSubType objectSubType)
     {
         PlayerGameObject gameObject;
 
@@ -103,12 +102,12 @@ public class EntityController
 
     public KeyValuePair<Guid, PlayerGameObject>? GetEntity(long objectId)
     {
-        return _knownEntities?.FirstOrDefault(x => x.Value.ObjectId == objectId);
+        return _knownEntities.FirstOrDefault(x => x.Value.ObjectId == objectId);
     }
 
-    public KeyValuePair<Guid, PlayerGameObject>? GetEntity(string uniqueName)
+    public KeyValuePair<Guid, PlayerGameObject>? GetEntity(string? uniqueName)
     {
-        return _knownEntities?.FirstOrDefault(x => x.Value.Name == uniqueName);
+        return _knownEntities.FirstOrDefault(x => x.Value.Name == uniqueName);
     }
 
     public List<KeyValuePair<Guid, PlayerGameObject>> GetAllEntities(bool onlyInParty = false)
@@ -125,8 +124,13 @@ public class EntityController
 
     #region Party
 
-    public async Task AddToPartyAsync(Guid guid, string username)
+    public async Task AddToPartyAsync(Guid guid, string? username)
     {
+        if (string.IsNullOrEmpty(username))
+        {
+            return;
+        }
+
         if (_knownPartyEntities.All(x => x.Key != guid))
         {
             _knownPartyEntities.TryAdd(guid, username);
@@ -198,15 +202,15 @@ public class EntityController
         });
     }
 
-    public bool IsEntityInParty(string name)
+    public bool IsEntityInParty(string? name)
     {
         return _knownPartyEntities.Any(x => x.Value == name);
     }
 
-    public bool IsEntityInParty(long objectId)
+    public bool IsEntityInParty(long? objectId)
     {
         var entity = _knownEntities.FirstOrDefault(x => x.Value.ObjectId == objectId);
-        return entity.Value != null && _knownPartyEntities.Any(x => x.Value == entity.Value.Name);
+        return entity.Value.Name != null && _knownPartyEntities.Any(x => x.Value == entity.Value.Name);
     }
 
     public bool IsEntityInParty(Guid guid)
@@ -443,7 +447,7 @@ public class EntityController
         );
     }
 
-    public event Action<long, GameTimeStamp, double, double, EffectType, EffectOrigin, long, int> OnHealthUpdate;
+    public event Action<long, GameTimeStamp, double, double, EffectType, EffectOrigin, long, int>? OnHealthUpdate;
 
     #endregion
 

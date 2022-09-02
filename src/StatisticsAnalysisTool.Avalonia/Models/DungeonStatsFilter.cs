@@ -25,14 +25,14 @@ namespace StatisticsAnalysisTool.Avalonia.Models
             DungeonMode.Corrupted,
             DungeonMode.Unknown
         };
-        private readonly TrackingController _trackingController;
+        private readonly TrackingController? _trackingController;
 
-        public DungeonStatsFilter(TrackingController trackingController)
+        public DungeonStatsFilter(TrackingController? trackingController)
         {
             _trackingController = trackingController;
 
-            _trackingController?.DungeonController?.SetDungeonStatsDayUi();
-            _trackingController?.DungeonController?.SetDungeonStatsTotalUi();
+            _trackingController?.DungeonController.SetDungeonStatsDayUi();
+            _trackingController?.DungeonController.SetDungeonStatsTotalUi();
         }
 
         public bool? SoloCheckbox

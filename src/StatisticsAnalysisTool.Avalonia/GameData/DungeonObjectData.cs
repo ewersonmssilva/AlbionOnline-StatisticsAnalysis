@@ -1,5 +1,4 @@
-﻿using log4net;
-using StatisticsAnalysisTool.Avalonia.Common;
+﻿using StatisticsAnalysisTool.Avalonia.Common;
 using StatisticsAnalysisTool.Avalonia.Enumerations;
 using StatisticsAnalysisTool.Avalonia.Models;
 using StatisticsAnalysisTool.Avalonia.Settings;
@@ -16,7 +15,6 @@ namespace StatisticsAnalysisTool.Avalonia.GameData
     public static class DungeonObjectData
     {
         public static IEnumerable<LootChest>? LootChests;
-        private static readonly ILog Log = LogManager.GetLogger(MethodBase.GetCurrentMethod()?.DeclaringType);
 
         public static DungeonMode GetDungeonMode(string? value)
         {

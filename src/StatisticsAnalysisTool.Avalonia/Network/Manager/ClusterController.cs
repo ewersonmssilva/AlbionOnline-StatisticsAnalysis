@@ -49,7 +49,7 @@ namespace StatisticsAnalysisTool.Avalonia.Network.Manager
             CurrentCluster.SetClusterInfo(mapType, mapGuid, clusterIndex, instanceName, worldMapDataType, dungeonInformation, mainClusterIndex);
         }
 
-        public void SetJoinClusterInformation(string index, string mainClusterIndex)
+        public void SetJoinClusterInformation(string? index, string? mainClusterIndex)
         {
             CurrentCluster.SetJoinClusterInfo(index, mainClusterIndex);
             CurrentCluster.ClusterInfoFullyAvailable = true;

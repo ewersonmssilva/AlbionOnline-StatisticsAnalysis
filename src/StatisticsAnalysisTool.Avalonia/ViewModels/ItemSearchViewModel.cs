@@ -1,3 +1,4 @@
+using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 using StatisticsAnalysisTool.Avalonia.Common;
 using StatisticsAnalysisTool.Avalonia.Models.ItemSearch;
@@ -9,6 +10,8 @@ namespace StatisticsAnalysisTool.Avalonia.ViewModels
 {
     public class ItemSearchViewModel : ViewModelBase
     {
+        private string? _searchText;
+
         public ItemSearchViewModel()
         {
             _ = InitItemsAsync();
@@ -36,6 +39,26 @@ namespace StatisticsAnalysisTool.Avalonia.ViewModels
         }
 
         #region Bindings
+
+        [Reactive]
+        public string? SearchText
+        {
+            get => _searchText;
+            set
+            {
+                _searchText = value;
+
+                //ItemsViewFilter();
+                //ItemsView?.Refresh();
+                this.RaiseAndSetIfChanged(ref _searchText, value);
+            }
+        }
+
+        [Reactive]
+        public bool IsTxtSearchEnabled { get; set; }
+
+        [Reactive]
+        public bool IsFilterResetEnabled { get; set; }
 
         [Reactive]
         public ObservableCollection<ItemSearchObject>? Items { get; set; }

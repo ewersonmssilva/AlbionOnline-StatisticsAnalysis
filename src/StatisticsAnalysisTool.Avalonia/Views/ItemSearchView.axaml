@@ -2,17 +2,135 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="450"
+             mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="450"
              x:Class="StatisticsAnalysisTool.Avalonia.Views.ItemSearchView"
              xmlns:viewModels="clr-namespace:StatisticsAnalysisTool.Avalonia.ViewModels"
+             xmlns:i="clr-namespace:Projektanker.Icons.Avalonia;assembly=Projektanker.Icons.Avalonia"
              xmlns:itemSearch="clr-namespace:StatisticsAnalysisTool.Avalonia.Models.ItemSearch">
     <Design.DataContext>
 		<viewModels:ItemSearchViewModel />
     </Design.DataContext>
 
+	<UserControl.Styles>
+		<Style Selector="TextBox.ItemSearchTextBoxStyle">
+			<Setter Property="HorizontalAlignment" Value="Left" />
+			<Setter Property="VerticalAlignment" Value="Top" />
+			<Setter Property="Height" Value="22" />
+			<Setter Property="Margin" Value="10,10,5,0" />
+			<Setter Property="TextWrapping" Value="Wrap" />
+			<Setter Property="Width" Value="220" />
+		</Style>
+
+        <Style Selector="Button.FilterReset">
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="Margin" Value="5,10,0,0" />
+            <Setter Property="Foreground" Value="{StaticResource SolidColorBrush.Text.1}" />
+            <Setter Property="Background" Value="transparent" />
+        </Style>
+	</UserControl.Styles>
+
     <DockPanel LastChildFill="True">
-		
-		<StackPanel>
+
+		<Grid Classes="TabItemGridStyle">
+			<StackPanel Orientation="Horizontal">
+                <TextBox x:Name="TxtSearch" Text="{Binding SearchText, Mode=TwoWay}"
+                         IsEnabled="{Binding IsTxtSearchEnabled, FallbackValue=false}"
+                         Classes="ItemSearchTextBoxStyle" />
+
+                <Button Classes="FilterReset" IsEnabled="{Binding IsFilterResetEnabled, FallbackValue=false}"
+                        ClickMode="Release" Command="{Binding FilterReset_MouseUp}">
+                    <i:Icon Value="fas fa-redo" FontSize="20" Margin="0" />
+                </Button>
+			</StackPanel>
+            <!--
+            <ComboBox ItemsSource="{Binding ItemCategories}" SelectedValue="{Binding SelectedItemShopCategory}"
+					  SelectedValuePath="Key" DisplayMemberPath="Value" HorizontalAlignment="Left" Margin="260,10,0,0" VerticalAlignment="Top" Width="150" />
+			<ComboBox ItemsSource="{Binding ItemSubCategories}" SelectedValue="{Binding SelectedItemShopSubCategory}"
+					  SelectedValuePath="Key" DisplayMemberPath="Value" HorizontalAlignment="Left" Margin="260,37,0,0" VerticalAlignment="Top" Width="150" />
+			<ComboBox ItemsSource="{Binding ItemTiers}" SelectedValue="{Binding SelectedItemTier}"
+					  SelectedValuePath="Key" DisplayMemberPath="Value" HorizontalAlignment="Left" Margin="415,10,0,0" VerticalAlignment="Top" Width="44" MinWidth="80" />
+			<ComboBox ItemsSource="{Binding ItemLevels}" SelectedValue="{Binding SelectedItemLevel}"
+					  SelectedValuePath="Key" DisplayMemberPath="Value" HorizontalAlignment="Left" Margin="500,10,0,0" VerticalAlignment="Top" Width="54" MinWidth="80" />
+            
+			<userControls:ItemSearchImageCounterControl VerticalAlignment="Top" HorizontalAlignment="Right" LocalImageCounter="{Binding LocalImageCounter}"
+														ItemCounterString="{Binding ItemCounterString}" />
+
+			<Grid IsEnabled="{Binding IsItemSearchCheckboxesEnabled}">
+				<CheckBox Content="{Binding Translation.ShowOnlyItemsWithAlertOn, FallbackValue=SHOW__ONLY__ITEMS__WITH__ALERT__ON}"
+						  IsChecked="{Binding IsShowOnlyItemsWithAlertOnActive, FallbackValue=false}" HorizontalAlignment="Left" Margin="10,59,0,0" VerticalAlignment="Top" Width="245" />
+				<CheckBox Content="{Binding Translation.ShowOnlyFavorites, FallbackValue=SHOW__ONLY__FAVORITES}"
+						  IsChecked="{Binding IsShowOnlyFavoritesActive, FallbackValue=false}" HorizontalAlignment="Left" Margin="260,59,0,0" VerticalAlignment="Top" Width="235" />
+			</Grid>
+
+			<ListView SnapsToDevicePixels="True" ItemsSource="{Binding ItemsView}" ItemContainerStyle="{StaticResource {x:Type ListViewItem}}"
+					  Margin="0,97,0,0" SelectionMode="Single" MouseDoubleClick="LvItems_MouseDoubleClick">
+				<ListView.View>
+					<GridView>
+						<GridViewColumn Header="{Binding Translation.Icon, FallbackValue=ICON}" Width="80">
+							<GridViewColumn.CellTemplate>
+								<DataTemplate>
+									<Grid>
+										<Image Source="{Binding (viewModels:ItemWindowViewModel.Icon)}" Width="75" Height="75" Stretch="Fill" />
+									</Grid>
+								</DataTemplate>
+							</GridViewColumn.CellTemplate>
+						</GridViewColumn>
+
+						<GridViewColumn Header="{Binding Translation.Name, FallbackValue=NAME}" Width="400"
+													DisplayMemberBinding="{Binding (models:Item.LocalizedNameAndEnglish)}" />
+
+						<GridViewColumn Header="{Binding Translation.IsAlertActive, FallbackValue=IS_ALERT_ACTIVE}" Width="100">
+							<GridViewColumn.CellTemplate>
+								<DataTemplate>
+									<Grid Height="24" Width="24">
+										<fa5:ImageAwesome Visibility="Visible" MouseUp="AlertModeAlertActiveToggle_MouseUp">
+											<fa5:ImageAwesome.Style>
+												<Style TargetType="{x:Type fa5:ImageAwesome}">
+													<Style.Triggers>
+														<DataTrigger Binding="{Binding (models:Item.IsAlertActive)}" Value="True">
+															<Setter Property="Icon" Value="Solid_ToggleOn"/>
+															<Setter Property="Foreground" Value="{StaticResource SolidColorBrush.Accent.Blue.2}"/>
+														</DataTrigger>
+														<DataTrigger Binding="{Binding (models:Item.IsAlertActive)}" Value="False">
+															<Setter Property="Icon" Value="Solid_ToggleOff"/>
+															<Setter Property="Foreground" Value="{StaticResource SolidColorBrush.Text.1}"/>
+														</DataTrigger>
+													</Style.Triggers>
+												</Style>
+											</fa5:ImageAwesome.Style>
+										</fa5:ImageAwesome>
+									</Grid>
+								</DataTemplate>
+							</GridViewColumn.CellTemplate>
+						</GridViewColumn>
+
+						<GridViewColumn Header="{Binding Translation.UndercuttingPrice, FallbackValue=UNDERCUTTING_PRICE}" Width="80">
+							<GridViewColumn.CellTemplate>
+								<DataTemplate>
+									<Grid>
+										<TextBox Text="{Binding (models:Item.AlertModeMinSellPriceIsUndercutPrice)}"
+															 MaxLength="12" Height="24" Width="65" PreviewTextInput="TxtBoxMinSellPriceIsUndercutPrice_OnPreviewTextInput"/>
+									</Grid>
+								</DataTemplate>
+							</GridViewColumn.CellTemplate>
+						</GridViewColumn>
+
+						<GridViewColumn Header="{Binding Translation.Favorite, FallbackValue=FAVORITE}" Width="80">
+							<GridViewColumn.CellTemplate>
+								<DataTemplate>
+									<Grid>
+										<CheckBox IsChecked="{Binding (models:Item.IsFavorite)}" />
+									</Grid>
+								</DataTemplate>
+							</GridViewColumn.CellTemplate>
+						</GridViewColumn>
+					</GridView>
+				</ListView.View>
+			</ListView>-->
+		</Grid>
+
+		<!--<StackPanel>
             <Grid Margin="3">
                 <TextBox Height="20" Width="350" VerticalAlignment="Top" HorizontalAlignment="Left" />
             </Grid>
@@ -31,7 +149,7 @@
                 </ItemsRepeater>
 
             </Grid>
-        </StackPanel>
+        </StackPanel>-->
         
     </DockPanel>
 

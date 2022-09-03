@@ -255,7 +255,7 @@ namespace StatisticsAnalysisTool.Avalonia.ViewModels
         public TrackingGeneralViewModel TrackingGeneralViewModel { get; set; } = new();
 
         [Reactive]
-        public ViewModelBase FooterViewModel { get; set; } = new();
+        public FooterViewModel FooterViewModel { get; set; } = new();
 
         [Reactive]
         public MainWindowTranslation Translation { get; set; } = new();

@@ -1,7 +1,8 @@
 ﻿<Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:controls="clr-namespace:StatisticsAnalysisTool.Avalonia.Controls"
-        xmlns:views="clr-namespace:StatisticsAnalysisTool.Avalonia.Views">
+        xmlns:views="clr-namespace:StatisticsAnalysisTool.Avalonia.Views"
+        xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<Design.PreviewWith>
 		<Border Padding="20">
 			<controls:AnimateTabControl Classes="Sidebar">
@@ -184,6 +185,10 @@
 
     <Style Selector="StackPanel.SidebarItem > PathIcon">
         <Setter Property="Margin" Value="0,0,0,0" />
+    </Style>
+
+    <Style Selector="TabItem.TabItemGridStyle">
+        <Setter Property="Margin" Value="0" />
     </Style>
 
 </Styles>

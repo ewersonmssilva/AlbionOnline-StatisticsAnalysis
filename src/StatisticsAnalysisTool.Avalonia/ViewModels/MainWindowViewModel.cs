@@ -21,7 +21,7 @@ namespace StatisticsAnalysisTool.Avalonia.ViewModels
     {
         public TrackingController? TrackingController;
         public Action? Close { get; set; }
-
+        
         private bool _isTrackingActive;
 
         public MainWindowViewModel()
@@ -29,17 +29,20 @@ namespace StatisticsAnalysisTool.Avalonia.ViewModels
             if (LanguageController.InitializeLanguage())
             {
                 // TODO: Window close funktioniert hier nicht, dialog anzeigen!
-                //CloseWindow();
+
+                //var mainWindow = WindowsManager.GetWindow<MainWindow>();
+                //mainWindow?.Close();
+                //return;
             }
-            
+
             InitData();
             //Initialization = InitTrackingAsync();
         }
 
         #region Inits
 
-        public Task Initialization { get; init; }
-        
+        public Task? Initialization { get; init; }
+
         private static void InitData()
         {
             // TODO: Close when file can not load
@@ -186,11 +189,6 @@ namespace StatisticsAnalysisTool.Avalonia.ViewModels
 
         #endregion
 
-        public void CloseWindow()
-        {
-            Close?.Invoke();
-        }
-
         #region Bindings
 
         public bool IsTrackingActive
@@ -251,6 +249,17 @@ namespace StatisticsAnalysisTool.Avalonia.ViewModels
         public TrackingActivityBindings TrackingActivityBindings { get; set; } = new();
 
         [Reactive]
+        public ItemSearchViewModel ItemSearchViewModel { get; set; } = new();
+
+        [Reactive]
+        public TrackingGeneralViewModel TrackingGeneralViewModel { get; set; } = new();
+
+        [Reactive]
+        public ViewModelBase FooterViewModel { get; set; } = new();
+
+        [Reactive]
+        public MainWindowTranslation Translation { get; set; } = new();
+
         public bool DebugModeVisibility
         {
             get
@@ -263,15 +272,6 @@ namespace StatisticsAnalysisTool.Avalonia.ViewModels
                 return isDebugMode;
             }
         }
-
-        [Reactive]
-        public ItemSearchViewModel ItemSearchViewModel { get; set; } = new ();
-
-        [Reactive]
-        public TrackingGeneralViewModel TrackingGeneralViewModel { get; set; } = new();
-
-        [Reactive]
-        public ViewModelBase FooterViewModel { get; set; } = new();
 
         #endregion
     }

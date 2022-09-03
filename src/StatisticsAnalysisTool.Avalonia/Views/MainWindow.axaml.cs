@@ -2,9 +2,9 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Markup.Xaml;
+using StatisticsAnalysisTool.Avalonia.Common;
 using StatisticsAnalysisTool.Avalonia.Controls;
 using System;
-using StatisticsAnalysisTool.Avalonia.Common;
 
 // ReSharper disable UnusedParameter.Local
 // ReSharper disable UnusedMember.Local

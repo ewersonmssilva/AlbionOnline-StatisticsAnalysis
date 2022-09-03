@@ -131,86 +131,116 @@
 
                 <!-- Main Menu -->
 			    <controls:AnimateTabControl Classes="Sidebar">
-				    <TabItem>
+				    <!--<TabItem>
 					    <HeaderedContentControl.HeaderTemplate>
 						    <DataTemplate>
 							    <StackPanel Classes="SidebarItem">
-								    <Label Content="Item Search" />
+								    <Label Content="{Binding Translation.Dashboard, FallbackValue=DASHBOARD}" />
+							    </StackPanel>
+						    </DataTemplate>
+					    </HeaderedContentControl.HeaderTemplate>
+					    <views:ItemSearchView Margin="5" DataContext="{Binding DashboardViewModel}" />
+				    </TabItem>-->
+                    <TabItem>
+					    <HeaderedContentControl.HeaderTemplate>
+						    <DataTemplate>
+							    <StackPanel Classes="SidebarItem">
+								    <Label Content="{Binding Translation.ItemSearch, FallbackValue=ITEM__SEARCH}" />
 							    </StackPanel>
 						    </DataTemplate>
 					    </HeaderedContentControl.HeaderTemplate>
 					    <views:ItemSearchView Margin="5" DataContext="{Binding ItemSearchViewModel}" />
 				    </TabItem>
-				    <TabItem>
+				    <!--<TabItem>
 					    <HeaderedContentControl.HeaderTemplate>
 						    <DataTemplate>
 							    <StackPanel Classes="SidebarItem">
-								    <Label Content="Tracking" />
+								    <Label Content="{Binding Translation.Logging, FallbackValue=LOGGING}" />
 							    </StackPanel>
 						    </DataTemplate>
 					    </HeaderedContentControl.HeaderTemplate>
-					    <views:TrackingGeneralView Margin="5" DataContext="{Binding TrackingGeneralViewModel}" />
-				    </TabItem>
-				    <TabItem>
+					    <views:TrackingGeneralView Margin="5" DataContext="{Binding LoggingViewModel}" />
+				    </TabItem>-->
+                    <!--<TabItem>
 					    <HeaderedContentControl.HeaderTemplate>
 						    <DataTemplate>
 							    <StackPanel Classes="SidebarItem">
-								    <Label Content="Loot" />
+								    <Label Content="{Binding Translation.Dungeons, FallbackValue=DUNGEONS}" />
 							    </StackPanel>
 						    </DataTemplate>
 					    </HeaderedContentControl.HeaderTemplate>
-					    <views:TrackingGeneralView Margin="5" DataContext="{Binding TrackingGeneralViewModel}" />
-				    </TabItem>
-				    <TabItem>
+					    <views:TrackingGeneralView Margin="5" DataContext="{Binding DungeonsViewModel}" />
+				    </TabItem>-->
+                    <!--<TabItem>
 					    <HeaderedContentControl.HeaderTemplate>
 						    <DataTemplate>
 							    <StackPanel Classes="SidebarItem">
-								    <Label Content="Dungeon" />
+								    <Label Content="{Binding Translation.DamageMeter, FallbackValue=DAMAGE__METER}" />
 							    </StackPanel>
 						    </DataTemplate>
 					    </HeaderedContentControl.HeaderTemplate>
-					    <views:TrackingGeneralView Margin="5" DataContext="{Binding TrackingGeneralViewModel}" />
+					    <views:TrackingGeneralView Margin="5" DataContext="{Binding DamageMeterViewModel}" />
 				    </TabItem>
-				    <TabItem>
-					    <HeaderedContentControl.HeaderTemplate>
-						    <DataTemplate>
-							    <StackPanel Classes="SidebarItem">
-								    <Label Content="Damage Meter" />
-							    </StackPanel>
-						    </DataTemplate>
-					    </HeaderedContentControl.HeaderTemplate>
-					    <views:TrackingGeneralView Margin="5" DataContext="{Binding TrackingGeneralViewModel}" />
-				    </TabItem>
-				    <TabItem>
-					    <HeaderedContentControl.HeaderTemplate>
-						    <DataTemplate>
-							    <StackPanel Classes="SidebarItem">
-								    <Label Content="Map History" />
-							    </StackPanel>
-						    </DataTemplate>
-					    </HeaderedContentControl.HeaderTemplate>
-					    <views:TrackingGeneralView Margin="5" DataContext="{Binding TrackingGeneralViewModel}" />
-				    </TabItem>
-				    <TabItem>
-					    <HeaderedContentControl.HeaderTemplate>
-						    <DataTemplate>
-							    <StackPanel Classes="SidebarItem">
-								    <Label Content="Player Information" />
-							    </StackPanel>
-						    </DataTemplate>
-					    </HeaderedContentControl.HeaderTemplate>
-					    <views:TrackingGeneralView Margin="5" DataContext="{Binding TrackingGeneralViewModel}" />
-				    </TabItem>
-				    <TabItem>
-					    <HeaderedContentControl.HeaderTemplate>
-						    <DataTemplate>
-							    <StackPanel Classes="SidebarItem">
-								    <Label Content="Settings" />
-							    </StackPanel>
-						    </DataTemplate>
-					    </HeaderedContentControl.HeaderTemplate>
-					    <views:TrackingGeneralView Margin="5" DataContext="{Binding TrackingGeneralViewModel}" />
-				    </TabItem>
+                    <TabItem>
+                        <HeaderedContentControl.HeaderTemplate>
+                            <DataTemplate>
+                                <StackPanel Classes="SidebarItem">
+                                    <Label Content="{Binding Translation.MailMonitoring, FallbackValue=MAIL__MONITORING}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </HeaderedContentControl.HeaderTemplate>
+                        <views:TrackingGeneralView Margin="5" DataContext="{Binding MailMonitoringViewModel}" />
+                    </TabItem>
+                    <TabItem>
+                        <HeaderedContentControl.HeaderTemplate>
+                            <DataTemplate>
+                                <StackPanel Classes="SidebarItem">
+                                    <Label Content="{Binding Translation.StorageHistory, FallbackValue=STORAGE__HISTORY}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </HeaderedContentControl.HeaderTemplate>
+                        <views:TrackingGeneralView Margin="5" DataContext="{Binding StorageHistoryViewModel}" />
+                    </TabItem>
+                    <TabItem>
+                        <HeaderedContentControl.HeaderTemplate>
+                            <DataTemplate>
+                                <StackPanel Classes="SidebarItem">
+                                    <Label Content="{Binding Translation.MapHistory, FallbackValue=MAP__HISTORY}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </HeaderedContentControl.HeaderTemplate>
+                        <views:TrackingGeneralView Margin="5" DataContext="{Binding MapHistoryViewModel}" />
+                    </TabItem>
+                    <TabItem>
+                        <HeaderedContentControl.HeaderTemplate>
+                            <DataTemplate>
+                                <StackPanel Classes="SidebarItem">
+                                    <Label Content="{Binding Translation.PlayerInformation, FallbackValue=PLAYER__INFORMATION}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </HeaderedContentControl.HeaderTemplate>
+                        <views:TrackingGeneralView Margin="5" DataContext="{Binding PlayerInformationViewModel}" />
+                    </TabItem>
+                    <TabItem>
+                        <HeaderedContentControl.HeaderTemplate>
+                            <DataTemplate>
+                                <StackPanel Classes="SidebarItem">
+                                    <Label Content="{Binding Translation.Donations, FallbackValue=DONATIONS}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </HeaderedContentControl.HeaderTemplate>
+                        <views:TrackingGeneralView Margin="5" DataContext="{Binding DonationsViewModel}" />
+                    </TabItem>
+                    <TabItem>
+                        <HeaderedContentControl.HeaderTemplate>
+                            <DataTemplate>
+                                <StackPanel Classes="SidebarItem">
+                                    <Label Content="{Binding Translation.Settings, FallbackValue=SETTINGS}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </HeaderedContentControl.HeaderTemplate>
+                        <views:TrackingGeneralView Margin="5" DataContext="{Binding SettingsViewModel}" />
+                    </TabItem>-->
 			    </controls:AnimateTabControl>
             </DockPanel>
         </Border>

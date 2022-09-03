@@ -1,4 +1,5 @@
 using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 using StatisticsAnalysisTool.Avalonia.ViewModels;
@@ -21,6 +22,8 @@ namespace StatisticsAnalysisTool.Avalonia
                 {
                     DataContext = new MainWindowViewModel(),
                 };
+
+                desktop.ShutdownMode = ShutdownMode.OnMainWindowClose;
             }
 
             base.OnFrameworkInitializationCompleted();
